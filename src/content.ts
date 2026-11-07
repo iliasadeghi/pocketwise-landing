@@ -25,6 +25,9 @@ export const site = {
   email: 'hello@pocketwise.example.com',
 };
 
+/** The Privacy Policy is a hash route (see hooks/useRoute.ts); its copy lives in privacy.ts. */
+export const privacyLink = { label: 'Privacy Policy', href: '#/privacy' } satisfies Link;
+
 export const nav = {
   links: [
     { label: 'Features', href: '#features' },

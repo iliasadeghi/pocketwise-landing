@@ -1,5 +1,6 @@
 import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { useId, useRef, useState, type FormEvent } from 'react';
+import { privacyLink } from '../content';
 import { submitWaitlist } from '../lib/submitWaitlist';
 import { validateEmail } from '../lib/validateEmail';
 import { cn } from '../lib/cn';
@@ -105,7 +106,15 @@ export function WaitlistForm({ label, submitLabel, note, className }: WaitlistFo
           )}
         </Button>
       </div>
-      <p className="mt-2 text-sm text-muted">{note}</p>
+      <p className="mt-2 text-sm text-muted">
+        {note}{' '}
+        <a
+          href={privacyLink.href}
+          className="rounded-sm underline underline-offset-4 hover:text-fg"
+        >
+          {privacyLink.label}
+        </a>
+      </p>
       <div aria-live="polite">
         {status === 'error' && (
           <p className="mt-3 flex items-center gap-2 text-sm font-medium text-danger" role="alert">
