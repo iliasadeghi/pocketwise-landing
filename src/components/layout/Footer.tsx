@@ -1,4 +1,4 @@
-import { footer } from '../../content';
+import { footer, privacyLink } from '../../content';
 import { Container } from '../ui/Container';
 import { Logo } from '../ui/Logo';
 
@@ -67,6 +67,12 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:justify-between">
           <p>{footer.copyright}</p>
           <p>{footer.disclaimer}</p>
+          <a
+            href={privacyLink.href}
+            className="inline-flex min-h-11 items-center rounded-md underline underline-offset-4 transition-colors hover:text-fg sm:-my-3"
+          >
+            {privacyLink.label}
+          </a>
         </div>
       </Container>
     </footer>

@@ -8,6 +8,11 @@ export function BackToTop() {
   return (
     <a
       href="#top"
+      onClick={(e) => {
+        // Scrolls in script so it also works on the Privacy Policy page, where "#top" means "home".
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }}
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}
       aria-hidden={!visible}
