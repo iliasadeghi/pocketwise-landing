@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens. Values are RGB channels so Tailwind can apply opacity.
+ * Every text/background pairing below meets WCAG AA (4.5:1) in its theme.
+ */
+@layer base {
+  :root {
+    --bg: 248 250 252; /* slate-50 */
+    --surface: 255 255 255;
+    --surface-2: 241 245 249; /* slate-100 */
+    --border: 226 232 240; /* slate-200 */
+    --fg: 15 23 42; /* slate-900 */
+    --muted: 71 85 105; /* slate-600 */
+
+    --primary: 79 70 229; /* indigo-600 */
+    --primary-strong: 67 56 202; /* indigo-700 */
+    --primary-fg: 255 255 255;
+    --primary-soft: 238 242 255; /* indigo-50 */
+    --violet: 124 58 237; /* violet-600 */
+
+    --accent: 4 120 87; /* emerald-700, safe as text on light surfaces */
+    --accent-soft: 209 250 229;
+
+    --success: 21 128 61;
+    --danger: 185 28 28;
+
+    --nav-h: 4rem;
+    color-scheme: light;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --nav-h: 4.5rem;
+    }
+  }
+
+  .dark {
+    --bg: 8 11 22;
+    --surface: 15 20 36;
+    --surface-2: 22 29 50;
+    --border: 38 47 74;
+    --fg: 241 245 249;
+    --muted: 148 163 184; /* slate-400 */
+
+    --primary: 129 140 248; /* indigo-400 */
+    --primary-strong: 165 180 252; /* indigo-300 */
+    --primary-fg: 11 16 32;
+    --primary-soft: 30 27 75;
+    --violet: 167 139 250; /* violet-400 */
+
+    --accent: 52 211 153; /* emerald-400 */
+    --accent-soft: 6 78 59;
+
+    --success: 74 222 128;
+    --danger: 248 113 113;
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg font-sans text-base text-fg antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-fg;
+  }
+
+  /* Offset anchor targets so the sticky navbar never covers a heading. */
+  section[id] {
+    scroll-margin-top: calc(var(--nav-h) + 0.5rem);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-bg;
+  }
+
+  ::selection {
+    @apply bg-primary/25;
+  }
+
+  /* Circular theme reveal: the browser's default cross-fade is replaced by a clip-path
+     animation driven from useTheme.ts. The new theme must sit on top of the old one. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    z-index: 2;
+  }
+
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-border/70 bg-surface/70 backdrop-blur-xl;
+  }
+
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  /* Soft aurora blobs + faint grid used behind the hero and CTA. */
+  .aurora {
+    background:
+      radial-gradient(40rem 24rem at 15% 10%, rgb(var(--primary) / 0.18), transparent 70%),
+      radial-gradient(36rem 22rem at 85% 0%, rgb(var(--violet) / 0.16), transparent 70%),
+      radial-gradient(30rem 20rem at 60% 90%, rgb(var(--accent) / 0.12), transparent 70%);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgb(var(--fg) / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--fg) / 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 75%);
+  }
+}

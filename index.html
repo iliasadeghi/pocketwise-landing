@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pocketwise: the budgeting app built for student life</title>
+    <meta
+      name="description"
+      content="Pocketwise turns your student loan, part-time pay and rent into one weekly safe-to-spend number. Join the waitlist for early access."
+    />
+    <link rel="canonical" href="https://iliasadeghi.github.io/pocketwise-landing/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#080b16" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pocketwise" />
+    <meta property="og:title" content="Pocketwise: the budgeting app built for student life" />
+    <meta
+      property="og:description"
+      content="One weekly safe-to-spend number from your loan, pay and rent. Join the waitlist."
+    />
+    <meta property="og:url" content="https://iliasadeghi.github.io/pocketwise-landing/" />
+    <meta property="og:image" content="https://iliasadeghi.github.io/pocketwise-landing/og-image.svg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pocketwise: the budgeting app built for student life" />
+    <meta
+      name="twitter:description"
+      content="One weekly safe-to-spend number from your loan, pay and rent. Join the waitlist."
+    />
+    <meta name="twitter:image" content="https://iliasadeghi.github.io/pocketwise-landing/og-image.svg" />
+
+    <!-- Apply the saved or system theme before first paint to avoid a flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {
+          /* storage unavailable: fall back to light */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Pocketwise works best with JavaScript enabled.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
